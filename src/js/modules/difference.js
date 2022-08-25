@@ -1,11 +1,14 @@
 export default class Difference {
   constructor(newcard, oldcard, items){
-    this.newcard = document.querySelector(newcard);
-    this.oldcard = document.querySelector(oldcard);
-    this.oldItems = this.oldcard.querySelectorAll(items);
-    this.newItems = this.newcard.querySelectorAll(items);
-    this.oldCounter = 0;
-    this.newCounter = 0;
+    try {
+      this.newcard = document.querySelector(newcard);
+      this.oldcard = document.querySelector(oldcard);
+      this.oldItems = this.oldcard.querySelectorAll(items);
+      this.newItems = this.newcard.querySelectorAll(items);
+      this.oldCounter = 0;
+      this.newCounter = 0;
+    } catch (error) {}
+   
   }
   hideCard(item){
     item.forEach((elem, i, arr) => {
@@ -28,9 +31,11 @@ export default class Difference {
 
 }
   init(){
-  this.hideCard(this.oldItems);  
-  this.hideCard(this.newItems);
-  this.bindTriggers(this.oldcard, this.oldCounter, this.oldItems);
-  this.bindTriggers(this.newcard, this.newCounter, this.newItems);
+    try {
+      this.hideCard(this.oldItems);  
+      this.hideCard(this.newItems);
+      this.bindTriggers(this.oldcard, this.oldCounter, this.oldItems);
+      this.bindTriggers(this.newcard, this.newCounter, this.newItems); 
+    } catch (error) {}
   }
 }

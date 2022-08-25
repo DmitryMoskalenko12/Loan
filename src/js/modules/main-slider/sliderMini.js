@@ -73,6 +73,7 @@ this.btnWrapper.addEventListener('mouseleave', () =>{
 }
 
   init(){
+    try {
     this.container.style.cssText = `
     display: flex;
     flex-wrap: wrap;
@@ -84,5 +85,7 @@ this.btnWrapper.addEventListener('mouseleave', () =>{
     if (this.autoplay) {
       this.stopPlay()
     }
+    } catch (error) {}
+    
   }
 }

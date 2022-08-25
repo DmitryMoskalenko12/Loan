@@ -5076,6 +5076,11 @@ window.addEventListener('DOMContentLoaded', function () {
     btns: '.next'
   });
   slider.render();
+  var modulePage = new _modules_main_slider_mainSlider__WEBPACK_IMPORTED_MODULE_1__["default"]({
+    container: '.moduleapp',
+    btns: '.next'
+  });
+  modulePage.render();
   var miniSlider = new _modules_main_slider_sliderMini__WEBPACK_IMPORTED_MODULE_2__["default"]({
     container: '.showup__content-slider',
     prev: '.showup__prev',
@@ -5137,12 +5142,14 @@ function () {
   function Difference(newcard, oldcard, items) {
     _classCallCheck(this, Difference);
 
-    this.newcard = document.querySelector(newcard);
-    this.oldcard = document.querySelector(oldcard);
-    this.oldItems = this.oldcard.querySelectorAll(items);
-    this.newItems = this.newcard.querySelectorAll(items);
-    this.oldCounter = 0;
-    this.newCounter = 0;
+    try {
+      this.newcard = document.querySelector(newcard);
+      this.oldcard = document.querySelector(oldcard);
+      this.oldItems = this.oldcard.querySelectorAll(items);
+      this.newItems = this.newcard.querySelectorAll(items);
+      this.oldCounter = 0;
+      this.newCounter = 0;
+    } catch (error) {}
   }
 
   _createClass(Difference, [{
@@ -5170,10 +5177,12 @@ function () {
   }, {
     key: "init",
     value: function init() {
-      this.hideCard(this.oldItems);
-      this.hideCard(this.newItems);
-      this.bindTriggers(this.oldcard, this.oldCounter, this.oldItems);
-      this.bindTriggers(this.newcard, this.newCounter, this.newItems);
+      try {
+        this.hideCard(this.oldItems);
+        this.hideCard(this.newItems);
+        this.bindTriggers(this.oldcard, this.oldCounter, this.oldItems);
+        this.bindTriggers(this.newcard, this.newCounter, this.newItems);
+      } catch (error) {}
     }
   }]);
 
@@ -5510,22 +5519,37 @@ function (_Slider) {
     value: function render() {
       var _this2 = this;
 
-      try {
-        this.hanson = document.querySelector('.hanson');
-      } catch (error) {}
+      if (this.container) {
+        try {
+          this.hanson = document.querySelector('.hanson');
+        } catch (error) {}
 
-      this.btns.forEach(function (but) {
-        but.addEventListener('click', function () {
-          _this2.plusSlide(1);
-        });
-        but.parentNode.previousElementSibling.addEventListener('click', function (e) {
-          e.preventDefault();
-          _this2.slideIndex = 1;
+        this.btns.forEach(function (but) {
+          but.addEventListener('click', function () {
+            _this2.plusSlide(1);
+          });
+          but.parentNode.previousElementSibling.addEventListener('click', function (e) {
+            e.preventDefault();
+            _this2.slideIndex = 1;
 
-          _this2.showSlide(_this2.slideIndex);
+            _this2.showSlide(_this2.slideIndex);
+          });
         });
-      });
-      this.showSlide(this.slideIndex);
+        this.showSlide(this.slideIndex);
+        document.querySelectorAll('.prevmodule').forEach(function (item) {
+          item.addEventListener('click', function () {
+            _this2.plusSlide(-1);
+          });
+        });
+        document.querySelectorAll('.nextmodule').forEach(function (item) {
+          item.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            _this2.plusSlide(1);
+          });
+        });
+      }
     }
   }]);
 
@@ -5568,7 +5592,11 @@ var Slider = function Slider() {
   _classCallCheck(this, Slider);
 
   this.container = document.querySelector(container);
-  this.slides = this.container.children;
+
+  try {
+    this.slides = this.container.children;
+  } catch (error) {}
+
   this.btns = document.querySelectorAll(btns);
   this.prev = document.querySelector(prev);
   this.next = document.querySelector(next);
@@ -5739,13 +5767,15 @@ function (_Slider) {
   }, {
     key: "init",
     value: function init() {
-      this.container.style.cssText = "\n    display: flex;\n    flex-wrap: wrap;\n    overflow: hidden;\n    align-items: flex-start;";
-      this.bindTriggers();
-      this.decorizeSlides();
+      try {
+        this.container.style.cssText = "\n    display: flex;\n    flex-wrap: wrap;\n    overflow: hidden;\n    align-items: flex-start;";
+        this.bindTriggers();
+        this.decorizeSlides();
 
-      if (this.autoplay) {
-        this.stopPlay();
-      }
+        if (this.autoplay) {
+          this.stopPlay();
+        }
+      } catch (error) {}
     }
   }]);
 

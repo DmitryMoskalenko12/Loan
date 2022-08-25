@@ -57,23 +57,39 @@ plusSlide(n){
 }
 
 render(){
-  try {
-    this.hanson = document.querySelector('.hanson');
-  } catch (error) {}
-
-  this.btns.forEach((but) => {
-    but.addEventListener('click', () => {
-      this.plusSlide(1);
+  if(this.container) {
+    try {
+      this.hanson = document.querySelector('.hanson');
+    } catch (error) {}
+  
+    this.btns.forEach((but) => {
+      but.addEventListener('click', () => {
+        this.plusSlide(1);
+      });
+  
+      but.parentNode.previousElementSibling.addEventListener('click', (e)=>{
+        e.preventDefault();
+        this.slideIndex = 1;
+        this.showSlide(this.slideIndex);
+  
+      });
     });
+   
+    this.showSlide(this.slideIndex);
 
-    but.parentNode.previousElementSibling.addEventListener('click', (e)=>{
-      e.preventDefault();
-      this.slideIndex = 1;
-      this.showSlide(this.slideIndex);
-
+    document.querySelectorAll('.prevmodule').forEach(item =>{
+      item.addEventListener('click', () =>{
+        this.plusSlide(-1);
+      })
     });
-  });
- 
-  this.showSlide(this.slideIndex);
+    document.querySelectorAll('.nextmodule').forEach(item =>{
+      item.addEventListener('click', (e) =>{
+        e.preventDefault();
+        e.stopPropagation();
+        this.plusSlide(1);
+      })
+    });
+  } 
+  
 }
 }

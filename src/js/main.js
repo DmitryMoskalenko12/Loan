@@ -44,6 +44,9 @@ feedSlider.init();
 const player = new VideoPlayer('.showup .play', '.overlay');
 player.init();
 
+const playerModules = new VideoPlayer('.module__video-item .play', '.overlay');
+playerModules.init();
+
 const diferent = new Difference('.officernew', '.officerold', '.officer__card-item');
 diferent.init();
 

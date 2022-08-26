@@ -3,6 +3,8 @@ import MainSlider from './modules/main-slider/mainSlider';
 import MiniSlider from './modules/main-slider/sliderMini';
 import Difference from './modules/difference';
 import Form from './modules/form';
+import Accordion from './modules/accordion';
+import Download from './modules/download'
 
 window.addEventListener('DOMContentLoaded', ()=>{
 const slider = new MainSlider({container: '.page', btns: '.next'});
@@ -52,4 +54,9 @@ diferent.init();
 
 const mainform = new Form('.form', 'http://localhost:3000/postData');
 mainform.init();
+
+new Accordion({btns: '.plus__content'}).init();
+new Download({
+  triggers: '.download',
+  downd: 'assets/img/feed_1.png'}).init();
 });

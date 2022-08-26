@@ -5127,6 +5127,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_main_slider_sliderMini__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/main-slider/sliderMini */ "./src/js/modules/main-slider/sliderMini.js");
 /* harmony import */ var _modules_difference__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/difference */ "./src/js/modules/difference.js");
 /* harmony import */ var _modules_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/form */ "./src/js/modules/form.js");
+/* harmony import */ var _modules_accordion__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/accordion */ "./src/js/modules/accordion.js");
+/* harmony import */ var _modules_download__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/download */ "./src/js/modules/download.js");
+
+
 
 
 
@@ -5176,7 +5180,65 @@ window.addEventListener('DOMContentLoaded', function () {
   diferent.init();
   var mainform = new _modules_form__WEBPACK_IMPORTED_MODULE_4__["default"]('.form', 'http://localhost:3000/postData');
   mainform.init();
+  new _modules_accordion__WEBPACK_IMPORTED_MODULE_5__["default"]({
+    btns: '.plus__content'
+  }).init();
+  new _modules_download__WEBPACK_IMPORTED_MODULE_6__["default"]({
+    triggers: '.download',
+    downd: 'assets/img/feed_1.png'
+  }).init();
 });
+
+/***/ }),
+
+/***/ "./src/js/modules/accordion.js":
+/*!*************************************!*\
+  !*** ./src/js/modules/accordion.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Accordion; });
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Accordion =
+/*#__PURE__*/
+function () {
+  function Accordion(_ref) {
+    var btns = _ref.btns;
+
+    _classCallCheck(this, Accordion);
+
+    this.btns = document.querySelectorAll(btns);
+  }
+
+  _createClass(Accordion, [{
+    key: "init",
+    value: function init() {
+      this.btns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          btn.closest('.module__info-show').nextElementSibling.classList.add('animated', 'fadeIn');
+          btn.closest('.module__info-show').nextElementSibling.style.marginTop = '20px';
+          btn.closest('.module__info-show').nextElementSibling.classList.toggle('msg');
+        });
+      });
+    }
+  }]);
+
+  return Accordion;
+}();
+
+
 
 /***/ }),
 
@@ -5251,6 +5313,73 @@ function () {
   }]);
 
   return Difference;
+}();
+
+
+
+/***/ }),
+
+/***/ "./src/js/modules/download.js":
+/*!************************************!*\
+  !*** ./src/js/modules/download.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Download; });
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Download =
+/*#__PURE__*/
+function () {
+  function Download(_ref) {
+    var triggers = _ref.triggers,
+        downd = _ref.downd;
+
+    _classCallCheck(this, Download);
+
+    this.triggers = document.querySelectorAll(triggers);
+    this.downd = downd;
+  }
+
+  _createClass(Download, [{
+    key: "linkDownload",
+    value: function linkDownload(e) {
+      var link = document.createElement('a');
+      link.setAttribute('href', this.downd);
+      link.setAttribute('download', 'picture');
+      link.style.display = 'none';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  }, {
+    key: "init",
+    value: function init() {
+      var _this = this;
+
+      this.triggers.forEach(function (item) {
+        item.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          _this.linkDownload();
+        });
+      });
+    }
+  }]);
+
+  return Download;
 }();
 
 

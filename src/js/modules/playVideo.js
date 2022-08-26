@@ -13,8 +13,9 @@ export default class VideoPlayer {
         blockedElem.setAttribute('data-disabled', 'true');
       }
      } catch (error) {}
-     
+
       item.addEventListener('click', () =>{
+        
       if (!item.closest('.module__video-item') || item.closest('.module__video-item').getAttribute('data-disabled') !== 'true') {
         this.activeBtn = item;
         if (document.querySelector('iframe#frame')) {
@@ -64,9 +65,9 @@ export default class VideoPlayer {
 
 
     onPlayerStateChange(state){
-      const blockedElem = this.activeBtn.closest('.module__video-item').nextElementSibling;
-      const playBtn = this.activeBtn.querySelector('svg').cloneNode(true);
-
+        const blockedElem = this.activeBtn.closest('.module__video-item').nextElementSibling;
+        const playBtn = this.activeBtn.querySelector('svg').cloneNode(true);
+      
       if (state.data === 0) {
        try {
         if (blockedElem.querySelector('.play__circle').classList.contains('closed')) {

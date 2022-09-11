@@ -5144,7 +5144,9 @@ window.addEventListener('DOMContentLoaded', function () {
   slider.render();
   var modulePage = new _modules_main_slider_mainSlider__WEBPACK_IMPORTED_MODULE_1__["default"]({
     container: '.moduleapp',
-    btns: '.next'
+    btns: '.next',
+    prevmodule: '.prevmodule',
+    nextmodule: '.nextmodule'
   });
   modulePage.render();
   var miniSlider = new _modules_main_slider_sliderMini__WEBPACK_IMPORTED_MODULE_2__["default"]({
@@ -5639,10 +5641,10 @@ var MainSlider =
 function (_Slider) {
   _inherits(MainSlider, _Slider);
 
-  function MainSlider(btns) {
+  function MainSlider(btns, prevmodule, nextmodule) {
     _classCallCheck(this, MainSlider);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(MainSlider).call(this, btns));
+    return _possibleConstructorReturn(this, _getPrototypeOf(MainSlider).call(this, btns, prevmodule, nextmodule));
   }
 
   _createClass(MainSlider, [{
@@ -5729,12 +5731,12 @@ function (_Slider) {
           });
         });
         this.showSlide(this.slideIndex);
-        document.querySelectorAll('.prevmodule').forEach(function (item) {
+        this.prevmodule.forEach(function (item) {
           item.addEventListener('click', function () {
             _this2.plusSlide(-1);
           });
         });
-        document.querySelectorAll('.nextmodule').forEach(function (item) {
+        this.nextmodule.forEach(function (item) {
           item.addEventListener('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
@@ -5780,7 +5782,11 @@ var Slider = function Slider() {
       animate = _ref.animate,
       autoplay = _ref.autoplay,
       _ref$btnWrapper = _ref.btnWrapper,
-      btnWrapper = _ref$btnWrapper === void 0 ? null : _ref$btnWrapper;
+      btnWrapper = _ref$btnWrapper === void 0 ? null : _ref$btnWrapper,
+      _ref$nextmodule = _ref.nextmodule,
+      nextmodule = _ref$nextmodule === void 0 ? null : _ref$nextmodule,
+      _ref$prevmodule = _ref.prevmodule,
+      prevmodule = _ref$prevmodule === void 0 ? null : _ref$prevmodule;
 
   _classCallCheck(this, Slider);
 
@@ -5790,6 +5796,8 @@ var Slider = function Slider() {
     this.slides = this.container.children;
   } catch (error) {}
 
+  this.prevmodule = document.querySelectorAll(prevmodule);
+  this.nextmodule = document.querySelectorAll(nextmodule);
   this.btns = document.querySelectorAll(btns);
   this.prev = document.querySelector(prev);
   this.next = document.querySelector(next);

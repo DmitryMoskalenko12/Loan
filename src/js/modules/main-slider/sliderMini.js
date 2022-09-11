@@ -56,7 +56,7 @@ bindTriggers(){
 stopPlay(){
 
 let interval = setInterval(() => this.nextSlide(), 5000);
- 
+
 this.container.addEventListener('mouseenter', () =>{
   clearInterval(interval)
 });

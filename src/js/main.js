@@ -12,8 +12,11 @@ slider.render();
 
 const modulePage = new MainSlider({
   container: '.moduleapp',
-  btns: '.next'
+  btns: '.next',
+  prevmodule: '.prevmodule',
+  nextmodule: '.nextmodule'
 })
+
 modulePage.render();
 const miniSlider = new MiniSlider({
 container: '.showup__content-slider',

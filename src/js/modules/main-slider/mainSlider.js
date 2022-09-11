@@ -1,7 +1,7 @@
 import Slider from './slider';
 export default class MainSlider extends Slider{
-constructor(btns){
-  super(btns);
+constructor(btns, prevmodule, nextmodule){
+  super(btns, prevmodule, nextmodule);
 }
 showSlide(n){
   if (n > this.slides.length) {
@@ -77,12 +77,12 @@ render(){
    
     this.showSlide(this.slideIndex);
 
-    document.querySelectorAll('.prevmodule').forEach(item =>{
+    this.prevmodule.forEach(item =>{
       item.addEventListener('click', () =>{
         this.plusSlide(-1);
       })
     });
-    document.querySelectorAll('.nextmodule').forEach(item =>{
+    this.nextmodule.forEach(item =>{
       item.addEventListener('click', (e) =>{
         e.preventDefault();
         e.stopPropagation();

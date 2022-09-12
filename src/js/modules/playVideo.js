@@ -21,18 +21,19 @@ export default class VideoPlayer {
         if (document.querySelector('iframe#frame')) {
           this.overlay.style.display = 'flex';
           if (this.path !== item.getAttribute('data-url')) {
-            this.path =  item.getAttribute('data-url');
-            this.player.loadVideoById({
-              videoId: this.path
-            });
+              this.path =  item.getAttribute('data-url');
+              this.player.loadVideoById({
+                videoId: this.path
+              });
           }
         }else{
-          this.path =  item.getAttribute('data-url');
-          this.createPlayer(this.path);
+            this.path =  item.getAttribute('data-url');
+            this.createPlayer(this.path); 
         }
       }
-    })
-  })
+    });
+  });
+  
 }
     closeBtn(){
       this.close.addEventListener('click', ()=>{
@@ -65,9 +66,14 @@ export default class VideoPlayer {
 
 
     onPlayerStateChange(state){
-        const blockedElem = this.activeBtn.closest('.module__video-item').nextElementSibling;
-        const playBtn = this.activeBtn.querySelector('svg').cloneNode(true);
-      
+      let blockedElem,
+          playBtn;
+          try {
+            blockedElem = this.activeBtn.closest('.module__video-item').nextElementSibling;
+            playBtn = this.activeBtn.querySelector('svg').cloneNode(true);
+          } catch (error) {}
+       
+        
       if (state.data === 0) {
        try {
         if (blockedElem.querySelector('.play__circle').classList.contains('closed')) {

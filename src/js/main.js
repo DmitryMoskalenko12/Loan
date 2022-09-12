@@ -46,7 +46,7 @@ activeClass: 'feed__item-active'
 })
 feedSlider.init();
 
-const player = new VideoPlayer('.showup .play', '.overlay');
+const player = new VideoPlayer('.play', '.overlay');
 player.init();
 
 const playerModules = new VideoPlayer('.module__video-item .play', '.overlay');

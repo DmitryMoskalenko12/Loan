@@ -5174,7 +5174,7 @@ window.addEventListener('DOMContentLoaded', function () {
     activeClass: 'feed__item-active'
   });
   feedSlider.init();
-  var player = new _modules_playVideo__WEBPACK_IMPORTED_MODULE_0__["default"]('.showup .play', '.overlay');
+  var player = new _modules_playVideo__WEBPACK_IMPORTED_MODULE_0__["default"]('.play', '.overlay');
   player.init();
   var playerModules = new _modules_playVideo__WEBPACK_IMPORTED_MODULE_0__["default"]('.module__video-item .play', '.overlay');
   playerModules.init();
@@ -5216,8 +5216,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 var Accordion =
 /*#__PURE__*/
 function () {
-  function Accordion(_ref) {
-    var btns = _ref.btns;
+  function Accordion() {
+    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        btns = _ref.btns;
 
     _classCallCheck(this, Accordion);
 
@@ -5229,9 +5230,11 @@ function () {
     value: function init() {
       this.btns.forEach(function (btn) {
         btn.addEventListener('click', function () {
-          btn.closest('.module__info-show').nextElementSibling.classList.add('animated', 'fadeIn');
-          btn.closest('.module__info-show').nextElementSibling.style.marginTop = '20px';
-          btn.closest('.module__info-show').nextElementSibling.classList.toggle('msg');
+          try {
+            btn.closest('.module__info-show').nextElementSibling.classList.add('animated', 'fadeIn');
+            btn.closest('.module__info-show').nextElementSibling.style.marginTop = '20px';
+            btn.closest('.module__info-show').nextElementSibling.classList.toggle('msg');
+          } catch (error) {}
         });
       });
     }
@@ -6098,8 +6101,12 @@ function () {
   }, {
     key: "onPlayerStateChange",
     value: function onPlayerStateChange(state) {
-      var blockedElem = this.activeBtn.closest('.module__video-item').nextElementSibling;
-      var playBtn = this.activeBtn.querySelector('svg').cloneNode(true);
+      var blockedElem, playBtn;
+
+      try {
+        blockedElem = this.activeBtn.closest('.module__video-item').nextElementSibling;
+        playBtn = this.activeBtn.querySelector('svg').cloneNode(true);
+      } catch (error) {}
 
       if (state.data === 0) {
         try {
